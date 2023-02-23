@@ -1,6 +1,9 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'screens/favoritesPage.dart';
+import 'utilities/read_write.dart';
+import 'dart:io';
 
 void main() {
   runApp(MyApp());
@@ -46,6 +49,7 @@ class MyAppState extends ChangeNotifier {
 }
 
 class MyHomePage extends StatefulWidget {
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -109,36 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class FavoritesPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
 
-    if (appState.favorites.isEmpty) {
-      return Center(
-        child: Text('No favorites yet.'),
-      );
-    }
-
-
-    return ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Text('You have '
-                '${appState.favorites.length} favorites:'),
-          ),
-          for (var pair in appState.favorites)
-          //appState.favorites.map((m) =>
-            ListTile(
-              leading: Icon(Icons.favorite),
-              title: Text(pair.asLowerCase),
-            ),
-          //favourites.map((m) => Text(m)).toList(),
-        ],
-      );
-  }
-}
 
 class GeneratorPage extends StatelessWidget {
   @override
